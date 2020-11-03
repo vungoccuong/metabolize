@@ -15,6 +15,7 @@ const (
 	TagName    = `meta`
 	htmlRegion = `head`
 	htmlTag    = `meta`
+	titleTag   = `title`
 )
 
 var (
@@ -147,6 +148,19 @@ func ParseDocument(doc io.Reader) (MetaData, error) {
 				data[strings.TrimSpace(property)] = content
 			}
 
+		} else if token.Data == titleTag && token.Type == html.StartTagToken {
+			tokenType := tokenizer.Next()
+			if tokenType == html.ErrorToken {
+				if tokenizer.Err() == io.EOF {
+					return data, nil
+				}
+				return nil, tokenizer.Err()
+			}
+			token := tokenizer.Token()
+			if tokenType == html.TextToken {
+				content := token.Data
+				data[titleTag] = content
+			}
 		}
 	}
 	return data, nil

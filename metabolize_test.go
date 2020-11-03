@@ -58,12 +58,12 @@ func Test_ParseDocument(t *testing.T) {
 	`
 	expectedData := MetaData{
 		"description": "MMMK",
-		"title":    "The Rock",
-		"og:title": "The Rock",
-		"og:type":  "video.movie",
-		"og:url":   "http://www.imdb.com/title/tt0117500/",
-		"og:image": "http://ia.media-imdb.com/images/cheese.jpg",
-		"og:cows":  "mooo",
+		"title":       "The Rock",
+		"og:title":    "The Rock",
+		"og:type":     "video.movie",
+		"og:url":      "http://www.imdb.com/title/tt0117500/",
+		"og:image":    "http://ia.media-imdb.com/images/cheese.jpg",
+		"og:cows":     "mooo",
 	}
 
 	data, err := ParseDocument(strings.NewReader(doc))

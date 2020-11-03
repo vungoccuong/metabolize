@@ -2,13 +2,13 @@ package main
 
 import (
 	"fmt"
-	m "github.com/keighl/metabolize"
+	"metabolize"
 	"net/http"
 	"net/url"
 )
 
 type MetaData struct {
-	Title       string  `meta:"og:title"`
+	Title       string  `meta:"og:title,title"`
 	Description string  `meta:"og:description,description"`
 	Type        string  `meta:"og:type"`
 	URL         url.URL `meta:"og:url"`
@@ -17,11 +17,11 @@ type MetaData struct {
 }
 
 func main() {
-	res, _ := http.Get("https://www.youtube.com/watch?v=FzRH3iTQPrk")
+	res, _ := http.Get("https://zozo.vn")
 
 	data := new(MetaData)
 
-	err := m.Metabolize(res.Body, data)
+	err := metabolize.Metabolize(res.Body, data)
 	if err != nil {
 		panic(err)
 	}
